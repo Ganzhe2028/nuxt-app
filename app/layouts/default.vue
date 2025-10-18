@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const currentYear = new Date().getFullYear()
+const currentYear = new Date().getFullYear();
 </script>
 
 <template>
@@ -43,7 +43,7 @@ const currentYear = new Date().getFullYear()
   min-height: 100vh;
   background: #f8fafc;
   color: #0f172a;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .top-bar {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from "vue";
 
 const {
   books,
@@ -12,20 +12,20 @@ const {
   pending,
   error,
   refreshLibrary,
-} = useLibraryData()
+} = useLibraryData();
 
-const totalBooks = computed(() => books.value.length)
+const totalBooks = computed(() => books.value.length);
 const availableBooks = computed(
-  () => books.value.filter((book) => book.status === 'available').length
-)
-const totalMembers = computed(() => members.value.length)
-const activeLoanCount = computed(() => activeLoans.value.length)
+  () => books.value.filter((book) => book.status === "available").length
+);
+const totalMembers = computed(() => members.value.length);
+const activeLoanCount = computed(() => activeLoans.value.length);
 
 const formatDate = (isoDate: string) =>
-  new Date(isoDate + 'T00:00:00').toLocaleDateString(undefined, {
-    month: 'short',
-    day: 'numeric',
-  })
+  new Date(isoDate + "T00:00:00").toLocaleDateString(undefined, {
+    month: "short",
+    day: "numeric",
+  });
 </script>
 
 <template>
@@ -74,7 +74,7 @@ const formatDate = (isoDate: string) =>
         <article class="stat-card">
           <p class="label">Resource highlights</p>
           <p class="value">
-            {{ books.filter((book) => book.category === 'Technology').length }}
+            {{ books.filter((book) => book.category === "Technology").length }}
           </p>
           <p class="hint">STEM titles available for projects</p>
         </article>
@@ -103,18 +103,18 @@ const formatDate = (isoDate: string) =>
               <tr v-for="loan in activeLoans" :key="loan.id">
                 <td>
                   <p class="table-primary">
-                    {{ getBookById(loan.bookId)?.title ?? 'Unknown title' }}
+                    {{ getBookById(loan.bookId)?.title ?? "Unknown title" }}
                   </p>
                   <p class="table-secondary">
-                    {{ getBookById(loan.bookId)?.author ?? '—' }}
+                    {{ getBookById(loan.bookId)?.author ?? "—" }}
                   </p>
                 </td>
                 <td>
                   <p class="table-primary">
-                    {{ getMemberById(loan.memberId)?.name ?? 'Unknown member' }}
+                    {{ getMemberById(loan.memberId)?.name ?? "Unknown member" }}
                   </p>
                   <p class="table-secondary">
-                    {{ getMemberById(loan.memberId)?.grade ?? '' }}
+                    {{ getMemberById(loan.memberId)?.grade ?? "" }}
                   </p>
                 </td>
                 <td>{{ formatDate(loan.borrowedAt) }}</td>
@@ -129,10 +129,10 @@ const formatDate = (isoDate: string) =>
                   >
                     {{
                       overdueLoans.includes(loan)
-                        ? 'Overdue'
+                        ? "Overdue"
                         : dueSoonLoans.includes(loan)
-                          ? 'Due soon'
-                          : 'On track'
+                        ? "Due soon"
+                        : "On track"
                     }}
                   </span>
                 </td>
@@ -151,7 +151,7 @@ const formatDate = (isoDate: string) =>
             </li>
             <li v-for="loan in overdueLoans" :key="`overdue-${loan.id}`">
               <strong>
-                {{ getMemberById(loan.memberId)?.name ?? 'Unknown' }}
+                {{ getMemberById(loan.memberId)?.name ?? "Unknown" }}
               </strong>
               is
               {{
@@ -162,15 +162,16 @@ const formatDate = (isoDate: string) =>
                 )
               }}
               days past due on
-              <em>{{ getBookById(loan.bookId)?.title ?? 'a book' }}</em>.
+              <em>{{ getBookById(loan.bookId)?.title ?? "a book" }}</em
+              >.
             </li>
             <li v-for="loan in dueSoonLoans" :key="`due-${loan.id}`">
               Reminder:
               <strong>
-                {{ getMemberById(loan.memberId)?.name ?? 'Unknown' }}
+                {{ getMemberById(loan.memberId)?.name ?? "Unknown" }}
               </strong>
               should return
-              <em>{{ getBookById(loan.bookId)?.title ?? 'a book' }}</em>
+              <em>{{ getBookById(loan.bookId)?.title ?? "a book" }}</em>
               by {{ formatDate(loan.dueAt) }}.
             </li>
           </ul>
