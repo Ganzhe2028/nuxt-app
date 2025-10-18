@@ -10,8 +10,7 @@
         <li><a href="#">Products</a></li>
       </ul>
     </nav>
-    <main>
-        <slot></slot>
-    </main>
+    <slot />
+    <footer>Footer content</footer>
   </div>
 </template>
